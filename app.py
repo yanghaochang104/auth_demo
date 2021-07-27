@@ -90,25 +90,19 @@ def requires_auth(f):
         return f(payload, *args, **kwargs)
     return wrapper
 
-def create_app(test_config=None): 
-    app = Flask(__name__)
-    CORS(app)
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Headers',
-                                'Content-Type, Authorization, true')
-        response.headers.add('Access-Control-Allow-Methods',
-                                'GET, PUT, POST, DELETE, OPTIONS')
-        return response
+app = Flask(__name__)
+CORS(app)
 
-    @app.route('/authorize')
-    @requires_auth
-    def authorize(payload):
-        
-        return jsonify({
-            'status': 200,
-            'message': 'Access Granted',
-            'permissions': payload['permissions']
-        })
+@app.route('/authorize')
+@requires_auth
+def authorize(payload):
     
-    return app
+    return jsonify({
+        'status': 200,
+        'message': 'Access Granted',
+        'permissions': payload['permissions']
+    })
+    
+
+if __name__ == '__main__':
+    app.run()
