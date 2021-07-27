@@ -104,11 +104,11 @@ def create_app(test_config=None):
     @app.route('/authorize')
     @requires_auth
     def authorize(payload):
-        print(payload)
         
         return jsonify({
             'status': 200,
-            'message': 'Access Granted'
+            'message': 'Access Granted',
+            'permissions': payload['permissions']
         })
     
     return app
