@@ -2,5 +2,4 @@ Flask
 Flask-Cors
 python-jose
 urllib3
-uwsgi
-werkzeug
+gunicorn
