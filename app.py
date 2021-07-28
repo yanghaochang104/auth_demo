@@ -6,8 +6,11 @@ from urllib.request import urlopen
 
 from flask_cors import CORS
 from jose import jwt
-from keys import AUTH0_DOMAIN, API_AUDIENCE ,ALGORITHMS
+import os
 
+AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
+API_AUDIENCE = os.getenv('API_AUDIENCE')
+ALGORITHMS = os.getenv('ALGORITHMS')
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
